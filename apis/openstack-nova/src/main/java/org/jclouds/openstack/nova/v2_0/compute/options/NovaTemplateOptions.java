@@ -179,6 +179,8 @@ public class NovaTemplateOptions extends TemplateOptions implements Cloneable {
     */
    @Deprecated
    public NovaTemplateOptions securityGroupNames(String... securityGroupNames) {
+      for (String groupName : checkNotNull(securityGroupNames, "securityGroupNames"))
+         checkNotNull(emptyToNull(groupName), "all security groups must be non-empty");
       return securityGroupNames(ImmutableSet.copyOf(checkNotNull(securityGroupNames, "securityGroupNames")));
    }
 

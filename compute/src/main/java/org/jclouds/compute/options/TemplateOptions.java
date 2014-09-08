@@ -530,6 +530,8 @@ public class TemplateOptions extends RunScriptOptions implements Cloneable {
     * assigns the created nodes to these security groups
     */
    public TemplateOptions securityGroups(Iterable<String> securityGroups) {
+      for (String groupName : checkNotNull(securityGroups, "securityGroups"))
+         checkNotNull(groupName, "all security groups must be not null");
       this.securityGroups = ImmutableSet.copyOf(checkNotNull(securityGroups, "securityGroups"));
       return this;
    }
@@ -538,6 +540,8 @@ public class TemplateOptions extends RunScriptOptions implements Cloneable {
     * @see TemplateOptions#securityGroups(Iterable<String>)
     */
    public TemplateOptions securityGroups(String... securityGroups) {
+      for (String groupName : checkNotNull(securityGroups, "securityGroups"))
+         checkNotNull(groupName, "all security groups must be not null");
       return securityGroups(ImmutableSet.copyOf(securityGroups));
    }
 
